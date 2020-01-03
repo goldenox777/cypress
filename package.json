@@ -21,8 +21,13 @@
     "nonGlobalStepDefinitions": true
   },
   "dependencies": {
+    "@joethefkingfrypan/mochawesome-junit-reporter": "^1.4.0",
     "cosmiconfig": "^6.0.0",
     "cypress": "^3.7.0",
-    "cypress-cucumber-preprocessor": "^1.16.2"
+    "cypress-cucumber-preprocessor": "^1.16.2",
+    "mocha": "^6.2.2",
+    "mocha-junit-reporter": "^1.23.1",
+    "mochawesome": "^4.1.0",
+    "mochawesome-merge": "^4.0.0"
   }
 }

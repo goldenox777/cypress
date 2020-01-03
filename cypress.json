@@ -1,3 +1,14 @@
 {
-    "testFiles": "**/*.{feature,features}"
+    "testFiles": "**/*.{feature,features}",
+    "ignoreTestFiles": "*.js",
+    "reporter": "@joethefkingfrypan/mochawesome-junit-reporter",
+    "reporterOptions": {
+        "reportDir": "results/mochaFiles",
+        "mochaFile": "results/mochaFiles/output-[hash].xml",
+        "overwrite": false,
+        "html": false,
+        "json": true
+    },
+    "screenshotsFolder": "results/visuals",
+    "videosFolder": "results/visuals"
 }
