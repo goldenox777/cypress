@@ -36,6 +36,7 @@ jobs:
 
       # run tests!
       - run: docker build -t wuff .
-      - run: docker container run -t wuff ./magic
+      - run: docker container run -t wuff /bin/bash
+      - run: ls -la
       # - run: cypress install
       # - run: npx cypress run
