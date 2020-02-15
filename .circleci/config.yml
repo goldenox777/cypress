@@ -35,5 +35,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: docker build -t wuff .
+      # - run: docker build -t wuff .
+      - run: cypress install
       - run: npx cypress run
