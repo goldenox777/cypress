@@ -1,6 +1,10 @@
 {
+    "integrationFolder": "cypress/integration",
     "testFiles": "**/*.{feature,features}",
-    "ignoreTestFiles": "*.js",
+    "ignoreTestFiles": [
+        "*.js",
+        "*Manual.feature"
+    ],
     "reporter": "@joethefkingfrypan/mochawesome-junit-reporter",
     "reporterOptions": {
         "reportDir": "results/mochaFiles",
@@ -10,5 +14,6 @@
         "json": true
     },
     "screenshotsFolder": "results/visuals",
-    "videosFolder": "results/visuals"
+    "videosFolder": "results/visuals",
+    "chromeWebSecurity": false
 }

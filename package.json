@@ -1,5 +1,5 @@
 {
-  "name": "cypress with cucumber",
+  "name": "Cypress",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -16,15 +16,17 @@
     "url": "https://github.com/goldenox777/cypress/issues"
   },
   "homepage": "https://github.com/goldenox777/cypress#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "cypress": "3.8.2",
+    "cypress-cucumber-preprocessor": "1.16.2"
+  },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "cypress/integration/interaction"
   },
   "dependencies": {
     "@joethefkingfrypan/mochawesome-junit-reporter": "^1.4.0",
     "cosmiconfig": "^6.0.0",
-    "cypress": "^3.7.0",
-    "cypress-cucumber-preprocessor": "^1.16.2",
     "mocha": "^6.2.2",
     "mocha-junit-reporter": "^1.23.1",
     "mochawesome": "^4.1.0",
