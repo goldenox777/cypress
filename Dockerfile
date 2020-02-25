@@ -60,5 +60,5 @@ COPY ./cypress.json /test/cypress.json
 COPY ./scripts/magic /test/scripts/magic
 # COPY ./mailer.js /test/mailer.js
 # COPY ./tfsStatusReporter.js /test/tfsStatusReporter.js
-RUN chmod a+rwx /scripts/magic
+RUN chmod a+rwx ./scripts/magic
 # RUN npx cypress run
