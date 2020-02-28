@@ -3,6 +3,7 @@ Feature: Feature file example for Cypress and Cucumber
     Clicking around, opening pages etc
 
     @auto
+    @tc:221
     Scenario: First scenario of google file
         Given I visit "baseUrl"
         Then "zzz" element with identifier "#mBMHK" should "be.visible"
@@ -11,10 +12,11 @@ Feature: Feature file example for Cypress and Cucumber
         Then "Results number" element with identifier "#mBMHK" should "be.visible"
 
     @auto
-    Scenario: This is the second and manual scenario of google file
-        Given __I go to the beach__
-        Then __There is sand there__
-        When __I walk into the sea__
-        And __I start swimming__
-        And __The sharks don't get me__
-        Then __I will survive__
+    Scenario: Second scenario of google file
+        Given I visit "baseUrl"
+        And __I click profile button__
+        Then __My profile is displayed__
+        When __I click the change password button__
+        And __I change my password__
+        Then __My password is changed__
+        And __My old password does not work anymore__
