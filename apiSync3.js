@@ -84,21 +84,25 @@ testrail.getCases(/*PROJECT_ID=*/1, /*FILTERS=*/{ suite_id: 1 }, function (err, 
 });
 
 async function indexLocalFileContents(casesFromApi) {
+
     for (const file of filesIndex) {
         var fileContentsObject = []
         if (file.includes('.feature')) {
+
             let fileContents = await getContentsOfFile(file)
             var fileContentsSplit = fileContents.split('\r\n\r\n')
             fileContentsSplit.shift()
             fileContentsSplit.shift()
             var scenarioIndex = -1
+
             for (const scenario of fileContentsSplit) {
+
                 let updatedFileContents = await getContentsOfFile(file)
                 var updatedFileTurnedIntoArray = updatedFileContents.split('\r\n')
                 var tagsArray = []
 
                 var loopIndex = 0
-                // console.log(fileTurnedIntoArray[3])
+
                 for (const entry of updatedFileTurnedIntoArray) {
                     if (entry.includes('@auto') || entry.includes('@manual')) {
                         tagsArray.push(loopIndex)
@@ -181,7 +185,7 @@ async function indexLocalFileContents(casesFromApi) {
                 })
 
                 if (casesFromApi.length != 0) {
-
+                    console.log('here')
                     if (fileContentsObject[scenarioIndex].testId == false) {
                         addCase(fileContentsObject[scenarioIndex])
                     } else {
