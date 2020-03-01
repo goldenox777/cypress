@@ -95,20 +95,20 @@ async function indexLocalFileContents() {
                 // var zzz = (/^([\s]+(@.*))+[\s]+Scenario:/gm).exec(data)
                 // console.log(zzz)
                 var fileTurnedIntoArray = data.split('\r\n')
+                var loopIndex = 0
+                // console.log(fileTurnedIntoArray[3])
                 for (const entry of fileTurnedIntoArray) {
-                    if (entry.includes('@auto')) {
-                        console.log(entry)
+                    if (entry.includes('@auto') || entry.includes('@manual')) {
+                        console.log(entry + ' ' + loopIndex)
                     }
+                    loopIndex++
                 }
 
                 var fileContentsSplit = data.split('\r\n\r\n')
                 fileContentsSplit.shift()
                 fileContentsSplit.shift()
 
-                var givenStep = false
-                var thenStep = false
-                var whenStep = false
-                var constructedStepTracker = -1
+
                 for (var ii = 0; ii < fileContentsSplit.length; ii++) {
                     var jsonBody = {}
                     jsonBody.type_id = 1
