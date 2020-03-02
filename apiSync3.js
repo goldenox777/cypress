@@ -3,6 +3,8 @@ var fs = require('fs');
 var request = require('request');
 
 const util = require('util');
+const newline = require('newline')
+
 const readFile = util.promisify(fs.readFile);
 var testFilesRoot = 'cypress/integration/tests'
 
@@ -41,15 +43,14 @@ function getCases() {
 // const testFolder = process.env.TSTFOLDER
 
 function addCase(object) {
-    // console.log(object.fileTurnedIntoArray.join('\n'))    
+    // console.log(object.fileTurnedIntoArray.join('\r\n'))
+    testrail.addCase(/*SECTION_ID=*/1, /*CONTENT=*/object.json, function (err, response, testcase) {
 
-    // testrail.addCase(/*SECTION_ID=*/1, /*CONTENT=*/object.json, function (err, response, testcase) {
-
-    //     var array = object.fileTurnedIntoArray
-    //     array[object.tagIndex] = "@auto\n@tc:" + testcase.id
-    //     var rewrittenFile = array.join('\n')
-    //     writeToFile(object.currentFile, rewrittenFile)
-    // });
+        // var array = object.fileTurnedIntoArray
+        // // array[object.tagIndex] = "@auto\r\n@tc:" + testcase.id + "\r\n"
+        // var rewrittenFile = array.join('\r\n')
+        // writeToFile(object.currentFile, rewrittenFile)
+    });
 }
 
 function writeToFile(filename, data) {
@@ -90,7 +91,10 @@ async function indexLocalFileContents(casesFromApi) {
         if (file.includes('.feature')) {
 
             let fileContents = await getContentsOfFile(file)
+            fileContents = fileContents.replace(/(\r\n|\n|\r)/gm, '\r\n')
+
             var fileContentsSplit = fileContents.split('\r\n\r\n')
+
             fileContentsSplit.shift()
             fileContentsSplit.shift()
             var scenarioIndex = -1
@@ -98,12 +102,14 @@ async function indexLocalFileContents(casesFromApi) {
             for (const scenario of fileContentsSplit) {
 
                 let updatedFileContents = await getContentsOfFile(file)
+                updatedFileContents = updatedFileContents.replace(/(\r\n|\n|\r)/gm, '\r\n')
                 var updatedFileTurnedIntoArray = updatedFileContents.split('\r\n')
+
+                var scenarioContentsSplit = scenario.split('\r\n')
                 var tagsArray = []
 
                 var loopIndex = 0
-
-                for (const entry of updatedFileTurnedIntoArray) {
+                for (const entry of scenarioContentsSplit) {
                     if (entry.includes('@auto') || entry.includes('@manual')) {
                         tagsArray.push(loopIndex)
                     }
@@ -119,8 +125,9 @@ async function indexLocalFileContents(casesFromApi) {
                 jsonBody.template_id = 2
                 jsonBody.custom_steps_separated = []
                 var constructedStepTracker = -1
-                var scenarioContentsSplit = scenario.split('\r\n')
 
+
+                // console.log(scenarioContentsSplit[])
                 for (const stringInScenario of scenarioContentsSplit) {
                     if (stringInScenario.includes('Given ') || stringInScenario.includes('When ') || stringInScenario.includes('Then ') || stringInScenario.includes('And ') || stringInScenario.includes('Scenario: ')) {
                         jsonBody.custom_steps_separated.push({})
@@ -155,26 +162,29 @@ async function indexLocalFileContents(casesFromApi) {
                         }
                     }
                 }
+                var testId
+                for (const entry of scenarioContentsSplit) {
+                    if (entry.includes('@tc:')) {
+                        testId = parseInt(entry.split(':')[1])
+                    } else {
+                        testId = false
+                    }
+                }
+
 
                 for (var k = 0; k < jsonBody.custom_steps_separated.length; k++) {
                     if (Object.keys(jsonBody.custom_steps_separated[k]).length == 0) {
                         jsonBody.custom_steps_separated.splice(k, k + 1)
                     }
                 }
-                var testId
-                if (scenarioContentsSplit[1].includes('@tc:')) {
-                    testId = parseInt(scenarioContentsSplit[1].split(':')[1])
-                } else {
-                    testId = false
-                }
-
+                scenarioIndex++
 
                 var givenStep = false
                 var thenStep = false
                 var whenStep = false
                 var constructedStepTracker = -1
 
-                scenarioIndex++
+
                 fileContentsObject.push({
                     tagIndex: tagsArray[scenarioIndex],
                     scenarioIndex: scenarioIndex,
@@ -185,7 +195,6 @@ async function indexLocalFileContents(casesFromApi) {
                 })
 
                 if (casesFromApi.length != 0) {
-                    console.log('here')
                     if (fileContentsObject[scenarioIndex].testId == false) {
                         addCase(fileContentsObject[scenarioIndex])
                     } else {
@@ -204,9 +213,6 @@ async function indexLocalFileContents(casesFromApi) {
                 } else if (casesFromApi.length == 0) {
                     addCase(fileContentsObject[scenarioIndex])
                 }
-
-
-                // console.log(scenarioIndex)
             }
 
         }
