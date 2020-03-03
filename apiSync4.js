@@ -43,14 +43,12 @@ function addCase(object) {
         var array = object.fileTurnedIntoArray
         array[object.tagIndex] = "@auto\r\n@tc:" + testcase.id
         var rewrittenFile = array.join('\r\n')
-        console.log(rewrittenFile)
-        console.log('---')
         writeToFile(object.currentFile, rewrittenFile)
     });
 }
 
 function writeToFile(filename, data) {
-    fs.writeFile(filename, data, function (err) {
+    fs.writeFileSync(filename, data, function (err) {
         if (err) return console.log(err);
         // console.log('File ' + filename + ' rewritten');
     });
@@ -80,24 +78,25 @@ testrail.getCases(/*PROJECT_ID=*/1, /*FILTERS=*/{ suite_id: 1 }, function (err, 
     indexLocalFileContents(cases)
 });
 
-async function indexLocalFileContents(casesFromApi) {
+function indexLocalFileContents(casesFromApi) {
 
     for (const file of filesIndex) {
         var fileContentsObject = []
         if (file.includes('.feature')) {
 
-            let fileContents = fs.readFileSync(file, 'utf8')
+            var fileContents = fs.readFileSync(file, 'utf8')
             fileContents = fileContents.replace(/(\r\n|\n|\r)/gm, '\r\n')
-            console.log(fileContents)
             var fileContentsSplit = fileContents.split('\r\n\r\n')
-
+            console.log(fileContents)
+            console.log('///')
             fileContentsSplit.shift()
             fileContentsSplit.shift()
             var scenarioIndex = -1
 
             for (const scenario of fileContentsSplit) {
 
-                let updatedFileContents = fs.readFileSync(file, 'utf8')
+                var updatedFileContents = fs.readFileSync(file, 'utf8')
+
                 updatedFileContents = updatedFileContents.replace(/(\r\n|\n|\r)/gm, '\r\n')
                 var updatedFileTurnedIntoArray = updatedFileContents.split('\r\n')
 

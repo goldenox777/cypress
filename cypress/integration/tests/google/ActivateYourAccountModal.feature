@@ -5,7 +5,6 @@ Feature: Activate your account __ authentication _ Login _ ActivateYourAccountMo
     Background: Reset rate limit
         Given I run API command for "reset rate limit;nonactivateduser@philips.com"
 
-    @tc:151
     @auto
     Scenario: Logging in with an unactivated user triggers the Activate Your Account modal
         Given I open "baseUrl"
