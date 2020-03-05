@@ -15,4 +15,4 @@ for r, d, f in os.walk(path):
 fileToArray = []
 for file in fileNamesList:
     with open(file, 'r') as content:
-        print(content.readlines())
+        print(content.readlines()[0])
