@@ -199,8 +199,6 @@ async function indexLocalFileContents(casesFromApi) {
                 writeToFile(file, reconstructedFile)
                 doesItNeedUpdate = false
             }
-
-
         }
     }
     var endTimer = Date.now() - timerStart
