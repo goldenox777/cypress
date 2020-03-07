@@ -1,2 +1,2 @@
-var baseUrl = 'https://google.com'
+var baseUrl = 'https://mail.yahoo.com'
 exports.baseUrl = baseUrl

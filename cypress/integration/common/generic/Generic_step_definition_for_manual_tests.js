@@ -1,4 +1,4 @@
 import { Given } from "cypress-cucumber-preprocessor/steps"
 
-Given(/(__).*(__)/, () => {
+Given(/(_).*(_)/, () => {
 })

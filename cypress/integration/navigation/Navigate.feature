@@ -7,3 +7,4 @@ Feature: Feature file example for Cypress and Cucumber
         Given I visit "baseUrl"
         Then I see element "Email or phone" with identifier "#identifierId" "be.visible"
 
+
