@@ -1,1 +1,1 @@
-npx cypress-tags run TAGS=$TAG --env host=$HOST ; export RSTATE=$? ; node ReportGenerator.js ; tar -zcf results.tar.gz results/ ; node mailer.js ; node tfsStatusReporter.js ; mkdir /test/results/consumables/merged ; npx junit-merge -d results/consumables/ -o results/consumables/merged/merged.xml
+npx cypress-tags run; export RSTATE=$? ; node /scripts/ReportGenerator.js ; tar -zcf results.tar.gz results/ ; node /scripts/mailer.js ; mkdir /test/results/consumables/merged ; npx junit-merge -d results/consumables/ -o results/consumables/merged/merged.xml
