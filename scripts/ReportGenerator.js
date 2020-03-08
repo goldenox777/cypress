@@ -1,10 +1,15 @@
 'use strict';
-const args = process.argv;
+//const args = process.argv;
 //first argument looks for the source of the jsons
-var reportsFolder = args[2].split('=')[1]
+//var reportsFolder = args[2].split('=')[1]
+// var reportsFolder = "/test/results/consumables/"
+
+//debug reportsFolders
+var reportsFolder = "./results/consumables/"
 
 //second argument is where we copy the end html
-var endReportFolder = args[3].split('=')[1]
+// var endReportFolder = args[3].split('=')[1]
+var endReportFolder = "/test/results/reports/"
 
 const testFolder = reportsFolder
 const fs = require('fs');
@@ -45,7 +50,6 @@ fs.readdir(testFolder, (err, files) => {
           //and it resides after the double "__"
           //console.log(myJson.results[0].suites[0].title)
           var filePath = (myJson.results[0].suites[0].title).split('__ ')[1]
-
           //each folder is separated with a " _ "
           var builtFilePath = filePath.split(" _ ")
           builtFilePath[builtFilePath.length - 1] = builtFilePath[builtFilePath.length - 1] + '.feature'
@@ -59,9 +63,9 @@ fs.readdir(testFolder, (err, files) => {
           for (var ii = 0; ii < builtFilePath.length; ii++) {
             errorFilePathSuffix += '/' + builtFilePath[ii]
           }
-          var screenshotsFilePath = '/screenshots' + errorFilePathSuffix + '/' + screenshotsErrorFileName
+          var screenshotsFilePath = 'visuals/screenshots' + errorFilePathSuffix + '/' + screenshotsErrorFileName
 
-          var videosFilePath = '/videos' + errorFilePathSuffix + '.mp4'
+          var videosFilePath = 'visuals/videos' + errorFilePathSuffix + '.mp4'
 
           //we extract the TFS id of a file by splitting after the first ocurrence of "- "
           var titleSplit
@@ -385,12 +389,82 @@ body {
   baseHtml += `</div></div>
   <div id="mainContainer" style="position:fixed;z-index:2;top:0px;width:100%;height:100%;display:none"><div style="width:100%;height:100%;background-color:black;opacity:0.5" id="grayContainer"></div><div id="scrcontainer" style="width:50%;position:absolute;top:50px;"></div><div id="vidcontainer" style="width:50%;position:absolute;top:50px;"></div><div id="filepathcontainer" style="position:absolute;top:30px;background-color:white"></div></div>
 		</body>	
-		</html>`
+    </html>`
+  var maxBarSize = 200
+  var barSizeFailed = (failed * 100) / tests
+  barSizeFailed = maxBarSize * barSizeFailed / 100
+  var barSizePassed = (passed * 100) / tests
+  barSizePassed = maxBarSize * barSizePassed / 100
+  var emailHtml = `<!DOCTYPE html>
+  <html>
+  
+  <head>
+    <style>
+      .bar {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+  
+      .total {
+        background-color: rgb(122, 120, 119);
+        width: `+ maxBarSize + `px;
+      }
+  
+      .failed {
+        background-color: rgb(240, 206, 209);
+        width: `+ barSizeFailed + `px;
+      }
+  
+      .passed {
+        background-color: rgb(152, 235, 210);
+        width: `+ barSizePassed + `px;
+      }
+  
+      .fright {
+        float: right;
+      }
+  
+      .fleft {
+        float: left;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="bar total fleft">Total</div>
+    <div class="fleft">`+ tests + ` tests</div>
+    <br>`
+  if (failed != 0) {
+    emailHtml += `<div class="bar failed fleft"> </div>
+      <div class="fleft">`+ failed + ` Failed</div>
+      <br>`
+  }
+  if (passed != 0) {
+    emailHtml += `<div class="bar passed fleft"> </div>
+      <div class="fleft">`+ passed + ` Passed</div>
+      <br>
+      `
+  }
+  emailHtml += `<div class="fleft">Execution time: ` + durationInMinutes + `</div>
+    <br>
+    <br>
+    <div>¯\\_(ツ)_/¯</div>
+    <div>For additional details, please see the attached archive.</div>
+    <div>Please find below a quick link to all of the failing test cases OR view the full run in <a
+        href="https://google.com" target="_blank">TFS</a></div>
+    <a href="http://www.google.com" target="_blank">19658</a>
+  </body>
+  
+  </html>
+  `
+
+
   var calculatedDate = Date.now()
-  writeToFile(endReportFolder + 'Report' + '.html')
-  writeToFile(endReportFolder + calculatedDate + '.html')
-  function writeToFile(pathWithFileName) {
-    fs.writeFile(pathWithFileName, baseHtml, function (err) {
+  writeToFile(__dirname + '/results/Report' + '.html', baseHtml)
+  writeToFile(__dirname + '/results/' + calculatedDate + '.html', baseHtml)
+  writeToFile(__dirname + '/EmailBody.html', emailHtml)
+  function writeToFile(pathWithFileName, htmlVar) {
+    fs.writeFile(pathWithFileName, htmlVar, function (err) {
       if (err) {
         return console.log(err)
       }

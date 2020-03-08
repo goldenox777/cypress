@@ -5,15 +5,10 @@
         "*.js",
         "*Manual.feature"
     ],
-    "reporter": "@joethefkingfrypan/mochawesome-junit-reporter",
+    "reporter": "cypress-multi-reporters",
     "reporterOptions": {
-        "reportDir": "results/mochaFiles",
-        "mochaFile": "results/mochaFiles/output-[hash].xml",
-        "overwrite": false,
-        "html": false,
-        "json": true
+        "configFile": "reporter-config.json"
     },
-    "screenshotsFolder": "results/visuals",
-    "videosFolder": "results/visuals",
-    "chromeWebSecurity": false
+    "screenshotsFolder": "results/visuals/screenshots",
+    "videosFolder": "results/visuals/videos"
 }

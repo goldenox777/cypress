@@ -25,13 +25,14 @@
     "nonGlobalStepDefinitions": true
   },
   "dependencies": {
+    "cypress-multi-reporters": "^1.2.4",
     "@joethefkingfrypan/mochawesome-junit-reporter": "^1.4.0",
     "cosmiconfig": "^6.0.0",
     "mocha": "^6.2.2",
     "mocha-junit-reporter": "^1.23.1",
     "mochawesome": "^4.1.0",
-    "mochawesome-merge": "^4.0.0",
     "newline": "0.0.3",
-    "testrail-api": "^1.3.5"
+    "testrail-api": "^1.3.5",
+    "nodemailer": "^6.4.4"
   }
 }

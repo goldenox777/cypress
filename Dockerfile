@@ -51,14 +51,13 @@ ENV npm_config_unsafe_perm true
 WORKDIR /test
 COPY ./package*.json /test/
 RUN npm install
-# RUN npm install nodemailer
 
 COPY ./cypress/ /test/cypress
 COPY ./cypress.json /test/cypress.json
-# COPY ./reporter-config.json /test/reporter-config.json
-# COPY ./ReportGenerator.js /test/ReportGenerator.js
+COPY ./reporter-config.json /test/reporter-config.json
+COPY ./scripts/ReportGenerator.js /test/scripts/ReportGenerator.js
 COPY ./scripts/magic /test/scripts/magic
-# COPY ./mailer.js /test/mailer.js
+COPY ./scripts/mailer.js /test/scripts/mailer.js
 # COPY ./tfsStatusReporter.js /test/tfsStatusReporter.js
 RUN chmod a+rwx ./scripts/magic
 # RUN npx cypress run

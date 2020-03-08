@@ -1,0 +1,14 @@
+{
+    "numTestsKeptInMemory": 9,
+    "reporterEnabled": "mocha-junit-reporter, mochawesome",
+    "reporterOptions": {
+        "reportDir": "results/consumables",
+        "overwrite": false,
+        "html": false,
+        "json": true
+    },
+    "mochaJunitReporterReporterOptions": {
+        "reportDir": "results/consumables",
+        "mochaFile": "results/consumables/results-[hash].xml"
+    }
+}
