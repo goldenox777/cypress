@@ -5,11 +5,11 @@
 // var reportsFolder = "/test/results/consumables/"
 
 //debug reportsFolders
-var reportsFolder = "./results/consumables/"
+var reportsFolder = __dirname + "/../results/consumables/"
 
 //second argument is where we copy the end html
 // var endReportFolder = args[3].split('=')[1]
-var endReportFolder = "/test/results/reports/"
+var endReportFolder = __dirname + "/../results/reports/"
 
 const testFolder = reportsFolder
 const fs = require('fs');
@@ -460,9 +460,10 @@ body {
 
 
   var calculatedDate = Date.now()
-  writeToFile(__dirname + '/results/Report' + '.html', baseHtml)
-  writeToFile(__dirname + '/results/' + calculatedDate + '.html', baseHtml)
-  writeToFile(__dirname + '/EmailBody.html', emailHtml)
+  console.log('I was here')
+  writeToFile(__dirname + '/../results/Report' + '.html', baseHtml)
+  writeToFile(__dirname + '/../results/' + calculatedDate + '.html', baseHtml)
+  writeToFile(__dirname + '/../EmailBody.html', emailHtml)
   function writeToFile(pathWithFileName, htmlVar) {
     fs.writeFile(pathWithFileName, htmlVar, function (err) {
       if (err) {
