@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/goldenox777/cypress#readme",
   "devDependencies": {
+    "@types/cypress-cucumber-preprocessor": "^1.14.0",
     "cypress": "3.8.2",
     "cypress-cucumber-preprocessor": "1.16.2"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true,
-    "stepDefinitions": "cypress/integration/interaction"
+    "nonGlobalStepDefinitions": true
   },
   "dependencies": {
     "@joethefkingfrypan/mochawesome-junit-reporter": "^1.4.0",

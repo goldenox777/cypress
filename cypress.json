@@ -1,6 +1,6 @@
 {
-    "integrationFolder": "cypress/integration/tests",
-    "testFiles": "**/*.{feature,features}",
+    "integrationFolder": "cypress/integration",
+    "testFiles": "**/tests/**/*.{feature,features}",
     "ignoreTestFiles": [
         "*.js",
         "*Manual.feature"
