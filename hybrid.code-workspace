@@ -6,7 +6,7 @@
 	],
 	"settings": {
 		"cucumberautocomplete.steps": [
-			"cypress/integration/common/generic/*.js",
+			"test/features/step_definitions/*.js",
 			"node_modules/qa-lib/src/step_definitions/*.js"
 		],
 		"cucumberautocomplete.syncfeatures": "test/features/*feature",

@@ -1,4 +1,4 @@
-Feature: Yahoo __ audit _ AuditManual
+Feature: yahoo:Yahoo
 
     Yahoo mail tests
 
