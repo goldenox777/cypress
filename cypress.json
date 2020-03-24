@@ -1,6 +1,6 @@
 {
     "integrationFolder": "cypress/integration",
-    "testFiles": "**/tests/**/*.{feature,features}",
+    "testFiles": "cypress/integration/tests/**/*.{feature,features}",
     "ignoreTestFiles": [
         "*.js",
         "*Manual.feature"
@@ -9,6 +9,6 @@
     "reporterOptions": {
         "configFile": "reporter-config.json"
     },
-    "screenshotsFolder": "results/visuals/screenshots",
-    "videosFolder": "results/visuals/videos"
+    "screenshotsFolder": "r/s",
+    "videosFolder": "r/v"
 }

@@ -1,12 +1,13 @@
-Feature: yahoo:Yahoo
+Feature: yahoo:Yahoo.feature
 
     Yahoo mail tests
 
     @auto
-    @tc:1622
+    @tc:1626
     @updated:false
-    Scenario: 1622- Elements presence on the yahoo page
+    Scenario: 1626- Elements presence on the yahoo page
         Given I visit "baseUrl"
+        And I see "aaa" element with identifier "bb" present
         Then I see "Email address" element with identifier "#login-username" present
         And I see "Next button" element with identifier "#login-signin" present
         And I see "Stay signed in checkbox" element with identifier "[class='stay-signed-in checkbox-container']" present
@@ -14,17 +15,17 @@ Feature: yahoo:Yahoo
         And I see "Create an account" element with identifier "#createacc" present
 
     @auto
-    @tc:1623
+    @tc:1627
     @updated:false
-    Scenario: 1623- Email validation
+    Scenario: 1627- Email validation
         Given I visit "baseUrl"
         And I click "Next button" element with identifier "#login-signin"
         Then I see "Error message" element with identifier "#username-error" present
 
     @auto
-    @tc:1624
+    @tc:1628
     @updated:false
-    Scenario: 1624- This will be a failing Scenario
+    Scenario: 1628- This will be a failing Scenario
         Given I visit "baseUrl"
         And I click "Non existing" element with identifier "#nonexisting"
         Then I see "nothing" element with identifier "#nothing" present

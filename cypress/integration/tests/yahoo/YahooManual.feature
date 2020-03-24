@@ -1,11 +1,11 @@
-Feature: yahoo:YahooManual
+Feature: yahoo:YahooManual.feature
 
     Yahoo mail tests
 
     @manual
-    @tc:1625
+    @tc:1629
     @updated:false
-    Scenario: 1625- This is the first manual test
+    Scenario: 1629- This is the first manual test
         Given _Johnny goes to the bakery_
         Then _He finds the place open_
         When _He walks up to the counter_

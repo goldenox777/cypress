@@ -5,7 +5,7 @@ var request = require('request');
 const util = require('util');
 const newline = require('newline')
 
-var testFilesRoot = 'cypress/integration/tests'
+var testFilesRoot = '../cypress/integration/tests'
 
 var testrail = new Testrail({
     host: 'https://goldenox777.testrail.io/',
