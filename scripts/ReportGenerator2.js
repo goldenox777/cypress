@@ -197,6 +197,10 @@ fs.readdir(testFolder, (err, files) => {
 
     }
 
+    .cursor {
+      cursor: default;
+    }
+
     .title {
       display: flex;
       -webkit-box-align: stretch;
@@ -230,7 +234,7 @@ fs.readdir(testFolder, (err, files) => {
     }
   </style>
 <body style="background-color: #f5f5f5;">`
-
+  returnStats()
   for (const json of failedArray) {
     baseHtml += returnEntry(json)
   }
@@ -273,17 +277,20 @@ fs.readdir(testFolder, (err, files) => {
   </script>`
   baseHtml += `</body>`
 
-
+  function returnStats() {
+    console.log(failedArray.length)
+    console.log(passedArray.length)
+  }
 
   function returnEntry(json) {
     var string = `<div class="entry">
   <div class="status">
-    <div class="status-button status-` + json.status + ` separator-right" style="display: inline-block;">
+    <div class="status-button cursor status-` + json.status + ` separator-right" style="display: inline-block;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
         style="width: 15px;height: 15px; vertical-align: middle;padding-left: 5px;">
         `+ returnIcon(json.status) + `
       </svg>
-      <div style="display: inline-block;vertical-align: middle;">`+ json.id + `</div>
+      `+ returnLinkElement(json.id) + `
     </div>
   </div>
   <div class="icon consumables" sourceScreenshot="`+ json.screenshots + `" sourceVideo="` + json.videos + `" status="` + json.status + `"">
@@ -311,24 +318,15 @@ fs.readdir(testFolder, (err, files) => {
   function returnLinkElement(id) {
     try {
       if (parseInt(id)) {
-        return '<a style="color:inherit" href="https://tfs.vitalhealthsoftware.com/tfs/DefaultCollection/PH3/_workitems/edit/' + id + '" target="_blank">' + id + '</a>'
+        return '<a style="display: inline-block;vertical-align: middle;color: inherit;text-decoration: none;" href="https://tfs.vitalhealthsoftware.com/tfs/DefaultCollection/PH3/_workitems/edit/' + id + '" target="_blank">' + id + '</a>'
       } else {
         return id
       }
     }
     catch (err) {
+    }
+  }
 
-    }
-  }
-  function capitalizeFirstLetter(string) {
-    var upper = string.charAt(0).toUpperCase() + string.substring(1)
-    return upper
-  }
-  function returnRedStyle(string) {
-    if (!parseInt(string)) {
-      return 'style="background-color:#ea6153"'
-    }
-  }
 
 
   var maxBarSize = 200
