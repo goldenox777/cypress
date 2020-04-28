@@ -1,1 +1,0 @@
-npx cypress run; export RSTATE=$? ; node scripts/ReportGenerator.js ; tar -zcf results.tar.gz results/ ; node /test/scripts/mailer.js ; mkdir /test/results/consumables/merged ; npx junit-merge -d /test/results/consumables/ -o /test/results/consumables/merged/merged.xml

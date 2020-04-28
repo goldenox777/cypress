@@ -55,9 +55,9 @@ RUN npm install
 COPY ./cypress/ /test/cypress
 COPY ./cypress.json /test/cypress.json
 COPY ./reporter-config.json /test/reporter-config.json
-COPY ./scripts/ReportGenerator.js /test/scripts/ReportGenerator.js
-COPY ./scripts/magic /test/scripts/magic
+COPY ./scripts/reportGenerator.js /test/scripts/reportGenerator.js
+COPY ./scripts/magic.sh /test/scripts/magic.sh
 COPY ./scripts/mailer.js /test/scripts/mailer.js
 # COPY ./tfsStatusReporter.js /test/tfsStatusReporter.js
-RUN chmod a+rwx ./scripts/magic
-# RUN npx cypress run
+RUN chmod a+rwx ./scripts/magic.sh
+# RUN npx cypress-tags run

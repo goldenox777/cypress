@@ -7,6 +7,7 @@ var transporter = nodemailer.createTransport({
         pass: 'ThisisAutomated!'
     }
 })
+
 var subjectBody
 var recipients = process.env.RECIPIENTS
 function constructString(string) {
@@ -24,7 +25,7 @@ var mailOptions = {
     to: recipients,
     subject: subjectBody,
     html: {
-        path: '/test/EmailBody.html'
+        path: '/test/r/EmailBody.html'
     },
     attachments: [
         {
