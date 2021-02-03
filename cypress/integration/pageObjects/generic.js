@@ -1,2 +1,2 @@
-var baseUrl = 'https://mail.yahoo.com'
+var baseUrl = 'https://www.webpagetest.org/'
 exports.baseUrl = baseUrl
