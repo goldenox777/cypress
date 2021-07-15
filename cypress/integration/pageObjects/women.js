@@ -1,0 +1,3 @@
+exports.women = {
+    subcategories: '#subcategories',
+}

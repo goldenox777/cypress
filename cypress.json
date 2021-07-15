@@ -9,5 +9,7 @@
         "configFile": "reporter-config.json"
     },
     "screenshotsFolder": "r/s",
-    "videosFolder": "r/v"
+    "videosFolder": "r/v",
+    "chromeWebSecurity": false,
+    "experimentalRunEvents": true
 }

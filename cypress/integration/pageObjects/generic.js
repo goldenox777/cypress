@@ -1,2 +1,2 @@
-var baseUrl = 'https://www.webpagetest.org/'
+var baseUrl = 'http://automationpractice.com/index.php'
 exports.baseUrl = baseUrl
