@@ -1,16 +1,10 @@
-import { index } from "../../pageObjects/index"
-import { signin } from "../../pageObjects/signin"
-import { women } from "../../pageObjects/women"
-import { searchresults } from "../../pageObjects/searchresults"
+import { login } from "../../pageObjects/login"
 
 var pageObjects = {
 
 }
 
-pageObjects.index = index
-pageObjects.signin = signin
-pageObjects.women = women
-pageObjects.searchresults = searchresults
+pageObjects.login = login
 
 exports.pageObjectController = (string) => {
     var page = string.split(".")[0]

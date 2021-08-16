@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "report": "export RSTATE=$? && node scripts/reportGenerator.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/cypress-cucumber-preprocessor": "4.0.0",
     "axios": "^0.21.1",
-    "cypress": "^6.5.0",
+    "cypress": "^8.1.0",
     "cypress-cucumber-preprocessor": "4.0.1"
   },
   "cypress-cucumber-preprocessor": {

@@ -5,12 +5,12 @@ var request = require('request');
 const util = require('util');
 const newline = require('newline')
 
-var testFilesRoot = __dirname + '../cypress/integration/tests'
+var testFilesRoot = __dirname + '/../cypress/integration/tests/index'
 
 var testrail = new Testrail({
-    host: 'https://arthurtestqa.testrail.io/',
-    user: 'arthurtestqa@gmail.com',
-    password: 'H/C20Y6ufu7AWzY0YVMa-0wHu025FgBtXJZgFHwDl'
+    host: 'https://goldenox7771.testrail.io/',
+    user: 'goldenox777+1@gmail.com',
+    password: '7Yp/tg2hJWfYF4GWxtIP-9wahvZ.qJD2cZDnx0pGI'
 });
 
 var timerStart = Date.now()
@@ -76,7 +76,7 @@ var filesIndex = files(testFilesRoot)
 
 testrail.getCases(/*PROJECT_ID=*/1, /*FILTERS=*/{ suite_id: 1 }, function (err, response, cases) {
     indexLocalFileContents(cases)
-    console.log(cases)
+    // console.log(cases)
 });
 
 async function indexLocalFileContents(casesFromApi) {

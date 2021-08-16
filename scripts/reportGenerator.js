@@ -12,8 +12,10 @@ if (trigggeredBy == 'undefined') {
 
 var host = process.env.HOST
 if (host == undefined) {
-  host = 'https://tfs.vitalhealthsoftware.com/tfs/DefaultCollection/PH3/_testManagement/runs?_a=runQuery'
+  host = 'undefined host'
 }
+
+var testManagementUrl = 'https://tfs.vitalhealthsoftware.com/tfs/DefaultCollection/PH3/_workitems/edit/'
 
 
 // var baseReportsFolder = "/test/r/"
@@ -79,8 +81,8 @@ fs.readdir(consumablesFolder, (err, files) => {
             errorFilePathSuffix += '/' + builtFilePath[ii]
           }
 
-          var screenshotsFilePath = 's' + errorFilePathSuffix + '/' + screenshotsErrorFileName
-          var videosFilePath = 'v' + errorFilePathSuffix + '.mp4'
+          var screenshotsFilePath = 's/tests' + errorFilePathSuffix + '/' + screenshotsErrorFileName
+          var videosFilePath = 'v/tests' + errorFilePathSuffix + '.mp4'
 
           //we extract the TFS id of a file by splitting after the first ocurrence of "- "
           var titleSplit
@@ -445,105 +447,6 @@ fs.readdir(consumablesFolder, (err, files) => {
           line-height: 1.8;
         }
 
-        @media screen {
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansThin.woff') format('woff');
-              font-weight: 100;
-              font-style: normal;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansThin-Italic.woff') format('woff');
-              font-weight: 100;
-              font-style: italic;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansXLight.woff') format('woff');
-              font-weight: 200;
-              font-style: normal;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansXLight-Italic.woff') format('woff');
-              font-weight: 200;
-              font-style: italic;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansLight.woff') format('woff');
-              font-weight: 300;
-              font-style: normal;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansLight-Italic.woff') format('woff');
-              font-weight: 300;
-              font-style: italic;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansBook.woff') format('woff');
-              font-weight: normal;
-              font-style: normal;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansBook-Italic.woff') format('woff');
-              font-weight: normal;
-              font-style: italic;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansMedium.woff') format('woff');
-              font-weight: 500;
-              font-style: normal;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansMedium-Italic.woff') format('woff');
-              font-weight: 500;
-              font-style: italic;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansBold.woff') format('woff');
-              font-weight: bold;
-              font-style: normal;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansBold-italic.woff') format('woff');
-              font-weight: bold;
-              font-style: italic;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansXBold.woff') format('woff');
-              font-weight: 800;
-              font-style: normal;
-          }
-
-          @font-face {
-              font-family: 'CentraleSans';
-              src: url('https://test.vitalhealth-ph3.nl/iam/static/fonts/CentraleSansXBold-Italic.woff') format('woff');
-              font-weight: 800;
-              font-style: italic;
-          }
-
           body {
               font-family: CentraleSans, Tahoma, Geneva, Kalimati, sans-serif;
           }
@@ -665,7 +568,7 @@ fs.readdir(consumablesFolder, (err, files) => {
   function returnLinkElement(id) {
     try {
       if (parseInt(id)) {
-        return '<a style="display: inline-block;vertical-align: middle;color: inherit;text-decoration: none;" href="https://tfs.vitalhealthsoftware.com/tfs/DefaultCollection/PH3/_workitems/edit/' + id + '" target="_blank">' + id + '</a>'
+        return '<a style="display: inline-block;vertical-align: middle;color: inherit;text-decoration: none;" href="' + testManagementUrl + id + '" target="_blank">' + id + '</a>'
       } else {
         return id
       }
@@ -692,9 +595,9 @@ fs.readdir(consumablesFolder, (err, files) => {
                             <table align="center" border="0" cellpadding="0" cellspacing="0"
                                 class="content-width inside">
                                 <tr>
-                                    <img alt="Photo of a woman looking at her health record in a sofa."
+                                    <img
                                         style="height: 192px; width: 640px;"
-                                        src="https://test.vitalhealth-ph3.nl/iam/static/img/email-header.png" />
+                                        src="https://www.cognizantsoftvision.com/react-images/logos/logo-header-csv.svg" />
                                 </tr>
                             </table>
 
@@ -712,8 +615,8 @@ fs.readdir(consumablesFolder, (err, files) => {
                     style="text-align:center; height: 192px; width: 640px; background: radial-gradient(circle, #10555B 0%, #16414C 100%);">
                     <tr>
                         <td style="vertical-align: middle;" valign="top">
-                            <img alt="Philips logo"
-                                src="https://test.vitalhealth-ph3.nl/iam/static/img/philips-shield-logo.png"
+                            <img alt="Cognizant logo"
+                                src="https://www.cognizantsoftvision.com/react-images/logos/logo-header-csv.svg"
                                 style="height: 96px; width: 96px;" />
                         </td>
                     </tr>

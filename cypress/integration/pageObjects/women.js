@@ -1,3 +1,0 @@
-exports.women = {
-    subcategories: '#subcategories',
-}

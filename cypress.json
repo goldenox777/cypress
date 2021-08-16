@@ -10,6 +10,5 @@
     },
     "screenshotsFolder": "r/s",
     "videosFolder": "r/v",
-    "chromeWebSecurity": false,
-    "experimentalRunEvents": true
+    "chromeWebSecurity": false
 }

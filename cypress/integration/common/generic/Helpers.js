@@ -19,3 +19,8 @@ exports.apiCall = (type, obj) => {
         data: obj
     })
 }
+
+exports.convertArrayToJson = (data) => {
+    let json = Object.fromEntries(data)
+    return json
+}
