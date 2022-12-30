@@ -29,7 +29,7 @@
     "@joethefkingfrypan/mochawesome-junit-reporter": "^1.4.0",
     "cosmiconfig": "^6.0.0",
     "cypress-multi-reporters": "^1.4.0",
-    "mocha": "^6.2.3",
+    "mocha": "^10.2.0",
     "mocha-junit-reporter": "^2.0.0",
     "mochawesome": "^6.2.2",
     "newline": "0.0.3",
